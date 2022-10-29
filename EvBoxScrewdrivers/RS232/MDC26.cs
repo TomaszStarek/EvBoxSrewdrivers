@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO.Ports;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
@@ -99,7 +100,8 @@ namespace EvBoxScrewdrivers
 
                 if(MainWindow.Barcode.Length > 0)
                 {
-                    Save.SaveLog(MainWindow.Barcode + "_" + screwIndex.ToString());
+                    var regexString = Regex.Replace(MainWindow.ListOfActivities[MainWindow._currentActivity].Name, @"\s+", string.Empty);
+                    Save.SaveLog(MainWindow.Barcode, screwIndex - 1, regexString);
 
                     //Task task2 = Task.Run(() => MainWindow.MyWindow.ChangeLabelOnScrew(screwIndex) );
                     //task2.Wait();
