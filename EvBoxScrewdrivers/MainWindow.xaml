@@ -1,0 +1,64 @@
+﻿<Window x:Class="EvBoxScrewdrivers.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:EvBoxScrewdrivers"
+        mc:Ignorable="d"
+       Title="Aplikacja wkrętak" Height="850" Width="1250" Closing="Window_Closing">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="250*"/>
+            <ColumnDefinition Width="313*"/>
+            <ColumnDefinition Width="238*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="36*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="32*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+            <RowDefinition Height="30*"/>
+
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="button" Content="RESET" Margin="36,23,37,0" Click="button_Click" Grid.Row="18" Height="43" Grid.Column="2" d:LayoutOverrides="HorizontalAlignment, Height" VerticalAlignment="Top"/>
+        <Label x:Name="labelPodajBarcode" Grid.Row="1"  Content="Podaj barkod:" Margin="0,0,2,0" FontSize="20"/>
+        <TextBox x:Name="textBoxBarcode" Grid.Row="2" TextWrapping="Wrap" FontSize="14" Margin="5,1,5,1" KeyDown="OnKeyDownHandlerBarcode" />
+
+
+        <Label x:Name="labelScrew1" Grid.Column="1" Content="Śruba 1 OK"  Grid.Row="4" Background="#FF37E214"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew2" Grid.Column="1" Content="Śruba 2 OK"  Grid.Row="5" Background="#FF37E214"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew3" Grid.Column="1" Content="Śruba 3 OK"  Grid.Row="6" Background="#FF37E214"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew4" Grid.Column="1" Content="Śruba 4 OK"  Grid.Row="7" Background="#FF37E214"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew5" Grid.Column="1" Content="Śruba 5 OK"  Grid.Row="8" Background="#FF37E214"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew6" Grid.Column="1" Content="Śruba 6 OK"  Grid.Row="9" Background="#FF37E214"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew7" Grid.Column="1" Content="Śruba 7 OK"  Grid.Row="10" Background="#FF37E214"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew8" Grid.Column="1" Content="Śruba 8 OK"  Grid.Row="11" Background="#FF37E214"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew9" Grid.Column="1" Content="Śruba 9 OK"  Grid.Row="12" Background="#FF37E214"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew10" Grid.Column="1" Content="Śruba 10 czeka na wkręcenie"  Grid.Row="13" Background="#FFE4F1E1"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew11" Grid.Column="1" Content="Śruba 11 czeka na wkręcenie"  Grid.Row="14" Background="#FFE4F1E1"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew12" Grid.Column="1" Content="Śruba 12 czeka na wkręcenie"  Grid.Row="14" Background="#FFE4F1E1"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew13" Grid.Column="1" Content="Śruba 13 czeka na wkręcenie"  Grid.Row="15" Background="#FFE4F1E1"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew14" Grid.Column="1" Content="Śruba 14 czeka na wkręcenie"  Grid.Row="16" Background="#FFE4F1E1"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelStatusInfo" Content="Zeskanuj produkt!!" HorizontalContentAlignment="Center" Grid.Column="2" Margin="-224,3,24,0" Grid.Row="1" FontSize="20" Background="#FF0CA0ED" Grid.RowSpan="2"/>
+        <TextBox x:Name="textBoxTCP" Margin="25,44,25,39" Grid.Row="18" TextWrapping="Wrap" Text="" d:LayoutOverrides="VerticalAlignment"/>
+        <TextBox x:Name="textBoxRS" Margin="25,44,60,39" Grid.Row="18" Grid.Column="1" TextWrapping="Wrap" Text="" d:LayoutOverrides="VerticalAlignment"/>
+        <Label x:Name="labelTextTcpResponse" Content="TCP (192.168.1.100) odpowiedź:" Margin="25,18,0,0" Grid.Row="18" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
+        <Label x:Name="labelTextRsResponse" Content="RS232 odpowiedź:" Margin="25,18,0,0" Grid.Column="1"  Grid.Row="18" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
+
+    </Grid>
+</Window>
+
