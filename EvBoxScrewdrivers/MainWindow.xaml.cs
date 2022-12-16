@@ -36,6 +36,8 @@ namespace EvBoxScrewdrivers
 
         public static MainWindow MyWindow { get; private set; }
 
+        private static string CheckpointToCheck;
+
         private void AddActivities()
         {
 
@@ -56,41 +58,110 @@ namespace EvBoxScrewdrivers
             //        tw.WriteLine(s);
             //}
 
-            try
+            switch (System.Environment.MachineName)
             {
-                List<string> lines = new List<string>();
-                
-                if (File.Exists(@"tasks.txt"))       //sprawdzanie czy sciezka istnieje
-                {
-                    lines = System.IO.File.ReadLines("tasks.txt").ToList();
-                }
-                else
-                {
-                    MessageBox.Show("Nie znaleziono pliku z zadaniami: tasks.txt\nPodaj w nim nazwę zadania i w nowej linii ilość śrub do wkręcenia",
-                        "Błąd odczytu pliku", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
-                    Environment.Exit(0);
-                }
-                    
-
-
-                for (int i = 0; i < lines.Count; i += 2)
-                {
-                    int c = 0;
-                    Int32.TryParse(lines[i + 1], out c);
-
-                    if(c >0 && lines[i].Length > 3)
+                case "PLKWIM0T21B4S01":
+                    ListOfActivities = new List<Activity>()
                     {
-                        var a = new Activity() { Name = lines[i], CountOfScrews = c };
-                        ListOfActivities.Add(a);
-                    }
-
-                }
+                        new Activity() { Name = "SCREW_BB1_P1", CountOfScrews = 6},
+                        new Activity() { Name = "SCREW_BB1_P2", CountOfScrews = 1 }
+                    };
+                    CheckpointToCheck = "SCREW_BB1_1";
+                    break;
+                case "PLKWIM0T21B4S02":
+                    ListOfActivities = new List<Activity>()
+                    {
+                        new Activity() { Name = "SCREW_BB2_P1", CountOfScrews = 2},
+                        new Activity() { Name = "SCREW_BB2_P2", CountOfScrews = 1 }
+                    };
+                    CheckpointToCheck = "SCREW_BB2_1";
+                    break;
+                case "PLKWIM0T21B4S03":
+                    ListOfActivities = new List<Activity>()
+                    {
+                        new Activity() { Name = "SCREW_BB3_P1", CountOfScrews = 4},
+                        new Activity() { Name = "SCREW_BB3_P2", CountOfScrews = 4 }
+                    };
+                    CheckpointToCheck = "SCREW_BB3_1";
+                    break;
+                case "PLKWIM0T21B4S04":
+                    ListOfActivities = new List<Activity>()
+                    {
+                        new Activity() { Name = "SCREW_BB4_P1", CountOfScrews = 2},
+                        new Activity() { Name = "SCREW_BB4_P2", CountOfScrews = 1 }
+                    };
+                    CheckpointToCheck = "SCREW_BB4_1";
+                    break;
+                case "PLKWIM0T21B4S05":
+                    ListOfActivities = new List<Activity>()
+                    {
+                        new Activity() { Name = "SCREW_BB5_P1", CountOfScrews = 14},
+                        new Activity() { Name = "SCREW_BB5_P2", CountOfScrews = 2 }
+                    };
+                    CheckpointToCheck = "SCREW_BB5_1";
+                    break;
+                case "PLKWIM0T21EVB06":
+                    ListOfActivities = new List<Activity>()
+                    {
+                        new Activity() { Name = "SCREW_DISPLAY_P1", CountOfScrews = 8},
+                    };
+                    CheckpointToCheck = "DISPLAY_SCREW_1";
+                    break;
+                case "PLKWIM0T21EVB02":
+                    ListOfActivities = new List<Activity>()
+                    {
+                        new Activity() { Name = "SCREW_SOCKET_P1", CountOfScrews = 4},
+                        new Activity() { Name = "SCREW_SOCKET_P2", CountOfScrews = 2},
+                        new Activity() { Name = "SCREW_SOCKET_P2", CountOfScrews = 1}
+                    };
+                    CheckpointToCheck = "SCREW_SOCKET_1";
+                    break;
+                default:
+                    ListOfActivities = new List<Activity>()
+                    {
+                        new Activity() { Name = "unknown", CountOfScrews = 0},
+                        new Activity() { Name = "unknown", CountOfScrews = 0 }
+                    };
+                    CheckpointToCheck = "SCREW_BB1_1";
+                    break;
             }
-            catch (Exception ex)
-            {
 
-                MessageBox.Show("Błąd odzczytu listy zadań\n" + ex, "Błąd odczytu pliku", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
-            }
+
+            //try
+            //{
+            //    List<string> lines = new List<string>();
+
+            //    if (File.Exists(@"tasks.txt"))       //sprawdzanie czy sciezka istnieje
+            //    {
+            //        lines = System.IO.File.ReadLines("tasks.txt").ToList();
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Nie znaleziono pliku z zadaniami: tasks.txt\nPodaj w nim nazwę zadania i w nowej linii ilość śrub do wkręcenia",
+            //            "Błąd odczytu pliku", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
+            //        Environment.Exit(0);
+            //    }
+
+
+
+            //    for (int i = 0; i < lines.Count; i += 2)
+            //    {
+            //        int c = 0;
+            //        Int32.TryParse(lines[i + 1], out c);
+
+            //        if(c >0 && lines[i].Length > 3)
+            //        {
+            //            var a = new Activity() { Name = lines[i], CountOfScrews = c };
+            //            ListOfActivities.Add(a);
+            //        }
+
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+
+            //    MessageBox.Show("Błąd odzczytu listy zadań\n" + ex, "Błąd odczytu pliku", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
+            //}
 
 
 
@@ -148,8 +219,10 @@ namespace EvBoxScrewdrivers
             TextBox textBox = (TextBox)sender;
             if (e.Key == Key.Return)
             {
-                if(textBox.Text.Length > 5)
-                {
+                             //   if(textBox.Text.Length > 5)
+                  //  if (CheckHistoryMes.CheckSerialNumberByCheckpointEPS(textBox.Text, "evbox", CheckpointToCheck).ToUpper().Equals("TRUE"))
+                    if (textBox.Text.Length > 5)
+                    {
                     ScrewsList.Clear();
                     for (int i = 0; i < NumberOfScrews; i++)
                     {

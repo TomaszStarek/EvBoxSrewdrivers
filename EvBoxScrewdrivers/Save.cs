@@ -17,6 +17,11 @@ namespace EvBoxScrewdrivers
 
         public static async Task SendLogMesTisAsync(string serial, int listIndex, string NameOfStep)
         {
+            var index = listIndex + 1;
+            string indexString = index.ToString();
+            if (index <= 9)
+                indexString = "0" + indexString;
+
             DateTime stop = DateTime.Now;
             wsTis.MES_TISSoapClient ws = new wsTis.MES_TISSoapClient(wsTis.MES_TISSoapClient.EndpointConfiguration.MES_TISSoap);
           //  wsTis.MES_TISSoapClient ws = new wsTis.MES_TISSoapClient(wsTis.MES_TISSoapClient.EndpointConfiguration.MES_TISSoap);
@@ -39,80 +44,77 @@ namespace EvBoxScrewdrivers
                     //sw.WriteLine("]" + stop.ToString("yyyy-MM-dd HH:mm:ss"));
 
                     StringBuilder sb = new StringBuilder();
-                        sb.Append($"S{serial}\n");
-                        sb.Append("CTRILLIANT" + "\n");
-                        sb.Append($"N{System.Environment.MachineName}_{NameOfStep}_{listIndex + 1}" + "\n");
-                        sb.Append($"P{NameOfStep}_{listIndex + 1}" + "\n");
-                        sb.Append("Ooperator" + "\n");
-                        sb.Append("TP" + "\n");
-                        sb.Append("MEventCount\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].EventCount}\n");
-                        sb.Append("MFasteningTime\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].FasteningTime}\n");
-                        sb.Append("MPresetNumber\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].PresetNumber}\n");
-                        sb.Append("MTargetTorque\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].TargetTorque}\n");
-                        sb.Append("MConvertedTorque\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].ConvertedTorque}\n");
-                        sb.Append("MTargetSpeed\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].TargetSpeed}\n");
-                        sb.Append("MA1\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].A1}\n");
-                        sb.Append("MA2\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].A2}\n");
-                        sb.Append("MA3\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].A3}\n");
-                        sb.Append("MScrewCountValue\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].ScrewCountValue}\n");
-                        sb.Append("MError\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].Error}\n");
-                        sb.Append("MForwardOrLoosenig\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].ForwardOrLoosenig}\n");
-                        sb.Append("MStatus\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].Status}\n");
-                        sb.Append("MSnugTorqueAngle\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].SnugTorqueAngle}\n");
-                        //Preset values -\/
-                        sb.Append("MTCAMorACTM\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].TCAMorACTM}\n");
-                        sb.Append("MTorque\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].Torque}\n");
-                        sb.Append("MTorqueMin\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].TorqueMin}\n");
-                        sb.Append("MTorqueMax\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].TorqueMax}\n");
-                        sb.Append("MTargetAngle\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].TargetAngle}\n");
-                        sb.Append("MMinAngle\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].MinAngle}\n");
-                        sb.Append("MMaxAngle\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].MaxAngle}\n");
-                        sb.Append("MSnugTorue\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].SnugTorue}\n");
-                        sb.Append("MSpeed\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].Speed}\n");
-                        sb.Append("MFreeFasteningAngle\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].FreeFasteningAngle}\n");
-                        sb.Append("MFreeFasteningSpeed\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].FreeFasteningSpeed}\n");
-                        sb.Append("MSoftStart\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].SoftStart}\n");
-                        sb.Append("MSeatingPoint\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].SeatingPoint}\n");
-                        sb.Append("MTorqueRisingRate\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].TorqueRisingRate}\n");
-                        sb.Append("MRampUpSpeed\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].RampUpSpeed}\n");
-                        sb.Append("MTorqueCompensation\n");
-                        sb.Append($"{MainWindow.ScrewsList[listIndex].TorqueCompensation}\n");
+                    sb.Append($"S{serial}\n");
+                    sb.Append("CEVBOX\n");
+                    sb.Append($"N{System.Environment.MachineName}_{NameOfStep.Substring(NameOfStep.Length - 2)}_s{indexString}\n");
+                    sb.Append($"P{NameOfStep}_s{indexString}\n");
+                    sb.Append("Ooperator\n");
+                    sb.Append("TP\n");
+                    sb.Append("MEventCount\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].EventCount}\n");
+                    sb.Append("MFasteningTime\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].FasteningTime}\n");
+                    sb.Append("MPresetNumber\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].PresetNumber}\n");
+                    sb.Append("MTargetTorque\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].TargetTorque}\n");
+                    sb.Append("MConvertedTorque\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].ConvertedTorque}\n");
+                    sb.Append("MTargetSpeed\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].TargetSpeed}\n");
+                    sb.Append("MA1\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].A1}\n");
+                    sb.Append("MA2\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].A2}\n");
+                    sb.Append("MA3\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].A3}\n");
+                    sb.Append("MScrewCountValue\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].ScrewCountValue}\n");
+                    sb.Append("MError\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].Error}\n");
+                    sb.Append("MForwardOrLoosenig\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].ForwardOrLoosenig}\n");
+                    sb.Append("MStatus\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].Status}\n");
+                    sb.Append("MSnugTorqueAngle\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].SnugTorqueAngle}\n");
+                    //Preset values -\/
+                    sb.Append("MTCAMorACTM\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].TCAMorACTM}\n");
+                    sb.Append("MTorque\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].Torque}\n");
+                    sb.Append("MTorqueMin\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].TorqueMin}\n");
+                    sb.Append("MTorqueMax\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].TorqueMax}\n");
+                    sb.Append("MTargetAngle\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].TargetAngle}\n");
+                    sb.Append("MMinAngle\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].MinAngle}\n");
+                    sb.Append("MMaxAngle\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].MaxAngle}\n");
+                    sb.Append("MSnugTorue\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].SnugTorue}\n");
+                    sb.Append("MSpeed\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].Speed}\n");
+                    sb.Append("MFreeFasteningAngle\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].FreeFasteningAngle}\n");
+                    sb.Append("MFreeFasteningSpeed\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].FreeFasteningSpeed}\n");
+                    sb.Append("MSoftStart\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].SoftStart}\n");
+                    sb.Append("MSeatingPoint\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].SeatingPoint}\n");
+                    sb.Append("MTorqueRisingRate\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].TorqueRisingRate}\n");
+                    sb.Append("MRampUpSpeed\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].RampUpSpeed}\n");
+                    sb.Append("MTorqueCompensation\n");
+                    sb.Append($"d{MainWindow.ScrewsList[listIndex].TorqueCompensation}\n");
+                    sb.Append("[" + stop.ToString("yyyy-MM-dd HH:mm:ss"));
+                    sb.Append("]" + stop.ToString("yyyy-MM-dd HH:mm:ss"));
 
-
-                    //     sb.Append("d" + WeightControl.MeasuredWeightOfCounter  + "\n");
-                    sb.Append("[" + stop.ToString("yyyy-MM-dd HH:mm:ss") + "\n");
-                        sb.Append("]" + stop.ToString("yyyy-MM-dd HH:mm:ss") + "\n");
-
-                        var res = await ws.ProcessTestDataAsync(sb.ToString(), "Generic");
+                    var res = await ws.ProcessTestDataAsync(sb.ToString(), "Generic");
 
                         if (res != null && res.Body.ProcessTestDataResult.ToString().ToUpper() != "PASS")
                         {
@@ -144,6 +146,10 @@ namespace EvBoxScrewdrivers
 
         public static void SaveLog(string serial, int listIndex, string NameOfStep)
         {
+            var index = listIndex + 1;
+            string indexString = index.ToString();
+            if (index <= 9)
+                indexString = "0" + indexString;
             try
             {
                 string sciezka = "C:/tars/";      //definiowanieścieżki do której zapisywane logi
@@ -161,72 +167,72 @@ namespace EvBoxScrewdrivers
                 {
 
                     sw.WriteLine($"S{serial}");
-                    sw.WriteLine("CTRILLIANT");
-                    sw.WriteLine($"N{System.Environment.MachineName}_{NameOfStep}_{listIndex + 1}");
-                    sw.WriteLine($"P{NameOfStep}_{listIndex + 1}");
+                    sw.WriteLine("CEVBOX");
+                    sw.WriteLine($"N{System.Environment.MachineName}_{NameOfStep.Substring(NameOfStep.Length - 2)}_s{indexString}");
+                    sw.WriteLine($"P{NameOfStep}_s{indexString}");
                     sw.WriteLine("Ooperator");
                     sw.WriteLine("TP");
                     sw.WriteLine("MEventCount");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].EventCount}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].EventCount}");
                     sw.WriteLine("MFasteningTime");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].FasteningTime}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].FasteningTime}");
                     sw.WriteLine("MPresetNumber");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].PresetNumber}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].PresetNumber}");
                     sw.WriteLine("MTargetTorque");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TargetTorque}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TargetTorque}");
                     sw.WriteLine("MConvertedTorque");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].ConvertedTorque}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].ConvertedTorque}");
                     sw.WriteLine("MTargetSpeed");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TargetSpeed}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TargetSpeed}");
                     sw.WriteLine("MA1");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].A1}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].A1}");
                     sw.WriteLine("MA2");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].A2}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].A2}");
                     sw.WriteLine("MA3");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].A3}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].A3}");
                     sw.WriteLine("MScrewCountValue");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].ScrewCountValue}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].ScrewCountValue}");
                     sw.WriteLine("MError");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].Error}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].Error}");
                     sw.WriteLine("MForwardOrLoosenig");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].ForwardOrLoosenig}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].ForwardOrLoosenig}");
                     sw.WriteLine("MStatus");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].Status}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].Status}");
                     sw.WriteLine("MSnugTorqueAngle");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].SnugTorqueAngle}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].SnugTorqueAngle}");
                     //Preset values -\/
                     sw.WriteLine("MTCAMorACTM");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TCAMorACTM}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TCAMorACTM}");
                     sw.WriteLine("MTorque");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].Torque}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].Torque}");
                     sw.WriteLine("MTorqueMin");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TorqueMin}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TorqueMin}");
                     sw.WriteLine("MTorqueMax");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TorqueMax}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TorqueMax}");
                     sw.WriteLine("MTargetAngle");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TargetAngle}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TargetAngle}");
                     sw.WriteLine("MMinAngle");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].MinAngle}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].MinAngle}");
                     sw.WriteLine("MMaxAngle");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].MaxAngle}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].MaxAngle}");
                     sw.WriteLine("MSnugTorue");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].SnugTorue}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].SnugTorue}");
                     sw.WriteLine("MSpeed");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].Speed}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].Speed}");
                     sw.WriteLine("MFreeFasteningAngle");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].FreeFasteningAngle}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].FreeFasteningAngle}");
                     sw.WriteLine("MFreeFasteningSpeed");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].FreeFasteningSpeed}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].FreeFasteningSpeed}");
                     sw.WriteLine("MSoftStart");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].SoftStart}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].SoftStart}");
                     sw.WriteLine("MSeatingPoint");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].SeatingPoint}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].SeatingPoint}");
                     sw.WriteLine("MTorqueRisingRate");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TorqueRisingRate}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TorqueRisingRate}");
                     sw.WriteLine("MRampUpSpeed");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].RampUpSpeed}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].RampUpSpeed}");
                     sw.WriteLine("MTorqueCompensation");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TorqueCompensation}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TorqueCompensation}");
                     sw.WriteLine("[" + stop.ToString("yyyy-MM-dd HH:mm:ss"));
                     sw.WriteLine("]" + stop.ToString("yyyy-MM-dd HH:mm:ss"));
                     //for (int i = 0; i > 15; i++)
@@ -254,6 +260,10 @@ namespace EvBoxScrewdrivers
 
         public static void SaveCopyLog(string serial, int listIndex, string NameOfStep)
         {
+            var index = listIndex + 1;
+            string indexString = index.ToString();
+            if (index <= 9)
+                indexString = "0" + indexString;
             try
             {
                 DateTime stop = DateTime.Now;
@@ -273,72 +283,72 @@ namespace EvBoxScrewdrivers
                 {
 
                     sw.WriteLine($"S{serial}");
-                    sw.WriteLine("CTRILLIANT");
-                    sw.WriteLine($"N{System.Environment.MachineName}_{NameOfStep}_{listIndex + 1}");
-                    sw.WriteLine($"P{NameOfStep}_{listIndex + 1}");
+                    sw.WriteLine("CEVBOX");
+                    sw.WriteLine($"N{System.Environment.MachineName}_{NameOfStep.Substring(NameOfStep.Length - 2)}_s{indexString}");
+                    sw.WriteLine($"P{NameOfStep}_s{indexString}");
                     sw.WriteLine("Ooperator");
                     sw.WriteLine("TP");
                     sw.WriteLine("MEventCount");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].EventCount}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].EventCount}");
                     sw.WriteLine("MFasteningTime");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].FasteningTime}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].FasteningTime}");
                     sw.WriteLine("MPresetNumber");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].PresetNumber}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].PresetNumber}");
                     sw.WriteLine("MTargetTorque");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TargetTorque}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TargetTorque}");
                     sw.WriteLine("MConvertedTorque");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].ConvertedTorque}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].ConvertedTorque}");
                     sw.WriteLine("MTargetSpeed");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TargetSpeed}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TargetSpeed}");
                     sw.WriteLine("MA1");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].A1}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].A1}");
                     sw.WriteLine("MA2");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].A2}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].A2}");
                     sw.WriteLine("MA3");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].A3}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].A3}");
                     sw.WriteLine("MScrewCountValue");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].ScrewCountValue}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].ScrewCountValue}");
                     sw.WriteLine("MError");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].Error}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].Error}");
                     sw.WriteLine("MForwardOrLoosenig");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].ForwardOrLoosenig}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].ForwardOrLoosenig}");
                     sw.WriteLine("MStatus");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].Status}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].Status}");
                     sw.WriteLine("MSnugTorqueAngle");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].SnugTorqueAngle}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].SnugTorqueAngle}");
                     //Preset values -\/
                     sw.WriteLine("MTCAMorACTM");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TCAMorACTM}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TCAMorACTM}");
                     sw.WriteLine("MTorque");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].Torque}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].Torque}");
                     sw.WriteLine("MTorqueMin");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TorqueMin}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TorqueMin}");
                     sw.WriteLine("MTorqueMax");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TorqueMax}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TorqueMax}");
                     sw.WriteLine("MTargetAngle");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TargetAngle}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TargetAngle}");
                     sw.WriteLine("MMinAngle");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].MinAngle}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].MinAngle}");
                     sw.WriteLine("MMaxAngle");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].MaxAngle}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].MaxAngle}");
                     sw.WriteLine("MSnugTorue");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].SnugTorue}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].SnugTorue}");
                     sw.WriteLine("MSpeed");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].Speed}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].Speed}");
                     sw.WriteLine("MFreeFasteningAngle");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].FreeFasteningAngle}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].FreeFasteningAngle}");
                     sw.WriteLine("MFreeFasteningSpeed");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].FreeFasteningSpeed}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].FreeFasteningSpeed}");
                     sw.WriteLine("MSoftStart");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].SoftStart}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].SoftStart}");
                     sw.WriteLine("MSeatingPoint");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].SeatingPoint}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].SeatingPoint}");
                     sw.WriteLine("MTorqueRisingRate");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TorqueRisingRate}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TorqueRisingRate}");
                     sw.WriteLine("MRampUpSpeed");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].RampUpSpeed}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].RampUpSpeed}");
                     sw.WriteLine("MTorqueCompensation");
-                    sw.WriteLine($"{MainWindow.ScrewsList[listIndex].TorqueCompensation}");
+                    sw.WriteLine($"d{MainWindow.ScrewsList[listIndex].TorqueCompensation}");
                     sw.WriteLine("[" + stop.ToString("yyyy-MM-dd HH:mm:ss"));
                     sw.WriteLine("]" + stop.ToString("yyyy-MM-dd HH:mm:ss"));
 

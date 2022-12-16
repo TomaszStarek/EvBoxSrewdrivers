@@ -101,10 +101,10 @@ namespace EvBoxScrewdrivers
                 if(MainWindow.Barcode.Length > 0)
                 {
                     var regexString = Regex.Replace(MainWindow.ListOfActivities[MainWindow._currentActivity].Name, @"\s+", string.Empty);
-                    Save.SaveLog(MainWindow.Barcode, screwIndex - 1, regexString);
-
-                    //Task task2 = Task.Run(() => MainWindow.MyWindow.ChangeLabelOnScrew(screwIndex) );
-                    //task2.Wait();
+                  //  Save.SaveLog(MainWindow.Barcode, screwIndex - 1, regexString);
+                     
+                    Task task2 = Task.Run(() => Save.SendLogMesTisAsync(MainWindow.Barcode, screwIndex - 1, regexString) );
+                    task2.Wait();
 
                     MainWindow.MyWindow.ChangeLabelOnScrew(screwIndex);
                     MainWindow.MyWindow.CheckJobCompleted();
