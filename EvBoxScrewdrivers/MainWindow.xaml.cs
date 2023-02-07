@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,9 +27,11 @@ namespace EvBoxScrewdrivers
     public partial class MainWindow : Window
     {
         private MDC26 _mdc26;
-        public static int _currentActivity;
+        public static int CurrentActivity;
         public static ModbusClient modbusClient { get; set; }
-        public static int NumberOfScrews = 6;
+        public static bool Model2Selection { get; set; } = false;
+
+        public static int NumberOfScrews = 0;
 
         public static List<Tightening>  ScrewsList = new List<Tightening>();
         public static List<Activity> ListOfActivities;
@@ -36,7 +39,9 @@ namespace EvBoxScrewdrivers
 
         public static MainWindow MyWindow { get; private set; }
 
-        private static string CheckpointToCheck;
+        public static string CheckpointToCheck;
+
+        public static bool CheckTackTime = false;
 
         private void AddActivities()
         {
@@ -79,8 +84,9 @@ namespace EvBoxScrewdrivers
                 case "PLKWIM0T21B4S03":
                     ListOfActivities = new List<Activity>()
                     {
-                        new Activity() { Name = "SCREW_BB3_P1", CountOfScrews = 4},
-                        new Activity() { Name = "SCREW_BB3_P2", CountOfScrews = 4 }
+                        new Activity() { Name = "SCREW_BB3_P1", CountOfScrews = 2},
+                        new Activity() { Name = "SCREW_BB3_P2", CountOfScrews = 2 },
+                        new Activity() { Name = "SCREW_BB3_P3", CountOfScrews = 4 }
                     };
                     CheckpointToCheck = "SCREW_BB3_1";
                     break;
@@ -106,6 +112,7 @@ namespace EvBoxScrewdrivers
                         new Activity() { Name = "SCREW_DISPLAY_P1", CountOfScrews = 8},
                     };
                     CheckpointToCheck = "DISPLAY_SCREW_1";
+                    CheckTackTime = true;
                     break;
                 case "PLKWIM0T21EVB02":
                     ListOfActivities = new List<Activity>()
@@ -119,7 +126,7 @@ namespace EvBoxScrewdrivers
                 default:
                     ListOfActivities = new List<Activity>()
                     {
-                        new Activity() { Name = "unknown", CountOfScrews = 0},
+                        new Activity() { Name = "unknown", CountOfScrews = 14},
                         new Activity() { Name = "unknown", CountOfScrews = 0 }
                     };
                     CheckpointToCheck = "SCREW_BB1_1";
@@ -175,16 +182,20 @@ namespace EvBoxScrewdrivers
 
             AddActivities();
 
-            _currentActivity = 0;
-            NumberOfScrews = ListOfActivities[_currentActivity].CountOfScrews;
+            CurrentActivity = 0;
+            //NumberOfScrews = ListOfActivities[_currentActivity].CountOfScrews;
 
             MyWindow = this;
-            for (int i = 0; i < NumberOfScrews; i++)
-            {
-              ScrewsList.Add(new Tightening());
-            }
+
+            //NumberOfScrews = 12;
+            //for (int i = 0; i < NumberOfScrews; i++)
+            //{
+            //    ScrewsList.Add(new Tightening());
+            //}
 
             StartSetLabels();
+         //   Dispatcher.Invoke(new Action(() => ___a2fiflavrt4f9amsalsy_png.Opacity = 0.15));
+
             try
             {
                 modbusClient = new ModbusClient("192.168.1.100", 5000);
@@ -219,22 +230,93 @@ namespace EvBoxScrewdrivers
             TextBox textBox = (TextBox)sender;
             if (e.Key == Key.Return)
             {
-                             //   if(textBox.Text.Length > 5)
-                  //  if (CheckHistoryMes.CheckSerialNumberByCheckpointEPS(textBox.Text, "evbox", CheckpointToCheck).ToUpper().Equals("TRUE"))
-                    if (textBox.Text.Length > 5)
+                if (CheckTackTime)
+                {
+                    var buforTimeInMinutes = CheckHistoryMes.CheckTackTime(textBox.Text);
+
+                    var IsDataSheetVerified = CheckHistoryMes.CheckTackTime(textBox.Text);
+
+                    if (buforTimeInMinutes > 48 * 60)  // DIS230200059  
                     {
+                        if (!CheckHistoryMes.CheckSetupSheet(textBox.Text, "14935"))
+                        {
+                            Dispatcher.Invoke(new Action(() => labelStatusInfo.Content = $"Błąd weryfikacji SetupSheet"));
+                            Dispatcher.Invoke(new Action(() => labelStatusInfo.Background = System.Windows.Media.Brushes.IndianRed));
+                            Dispatcher.Invoke(new Action(() => textBox.Text = String.Empty));
+                            return;
+                        }
+                        else
+                            Save.SaveGrn(textBox.Text);
+
+                    }
+                    else if (buforTimeInMinutes == 0)
+                    {
+                        Dispatcher.Invoke(new Action(() => labelStatusInfo.Content = $"Nieprawidłowy czasu buforu!\n Błąd zapytania"));
+                        Dispatcher.Invoke(new Action(() => labelStatusInfo.Background = System.Windows.Media.Brushes.IndianRed));
+                        Dispatcher.Invoke(new Action(() => textBox.Text = String.Empty));
+                        return;
+                    }
+                    else
+                    {
+                        Dispatcher.Invoke(new Action(() => labelStatusInfo.Content = $"Nieprawidłowy czasu buforu!\n Pozostało do odczekania: {Math.Round((2880 - buforTimeInMinutes), 1)} minut"));
+                        Dispatcher.Invoke(new Action(() => labelStatusInfo.Background = System.Windows.Media.Brushes.IndianRed));
+                        Dispatcher.Invoke(new Action(() => textBox.Text = String.Empty));
+                        return;
+                    }
+
+                }
+            
+
+
+
+                
+                   
+
+                             //   if(textBox.Text.Length > 5)
+                             //  if (CheckHistoryMes.CheckSerialNumberByCheckpointEPS(textBox.Text, "evbox", CheckpointToCheck).ToUpper().Equals("TRUE"))
+                if (textBox.Text.Length > 5)
+                {
+                    
+                   
+                    textBox.Text = Regex.Replace(textBox.Text, @"\s+", string.Empty);
+                    Barcode = textBox.Text;
+
+                    GetActivities.GetBoardDataAndChooseActivitiesToDo(Barcode, ChargerImage);
                     ScrewsList.Clear();
+                    //if(NumberOfScrews > 0)
+                    //    Dispatcher.Invoke(new Action(() => ___a2fiflavrt4f9amsalsy_png.Opacity = 0.03));
+                    //else
+                    //    Dispatcher.Invoke(new Action(() => ___a2fiflavrt4f9amsalsy_png.Opacity = 0.15));
+
                     for (int i = 0; i < NumberOfScrews; i++)
                     {
                         ScrewsList.Add(new Tightening());
                     }
-                    textBox.Text = Regex.Replace(textBox.Text, @"\s+", string.Empty);
-                    Barcode = textBox.Text;
+
                     StartSetLabels();
                     try
                     {
                           modbusClient.WriteSingleRegister(4001, 0);
-      //                  modbusClient.WriteSingleRegister(4004, 1);
+                        //                  modbusClient.WriteSingleRegister(4004, 1);
+                        modbusClient.WriteSingleRegister(4007, 1);
+
+                        if(!Model2Selection)
+                        {
+                            modbusClient.WriteSingleRegister(4006, 63);
+                            modbusClient.WriteSingleRegister(4008, 2);
+                            Thread.Sleep(500);
+                            modbusClient.WriteSingleRegister(4008, 1);
+                        }
+                        else
+                        {
+                            modbusClient.WriteSingleRegister(4006, 62 + 64);
+                            modbusClient.WriteSingleRegister(4008, 1);
+                            Thread.Sleep(500);
+                            modbusClient.WriteSingleRegister(4008, 2);
+                        }
+
+                        modbusClient.WriteSingleRegister(4007, 0);
+
 
                     }
                     catch (Exception ex)
@@ -244,7 +326,7 @@ namespace EvBoxScrewdrivers
                         return;
                     }
 
-                    Dispatcher.Invoke(new Action(() => labelStatusInfo.Content = $"{ListOfActivities[_currentActivity].Name}\nWkręć śruby!"));
+                    Dispatcher.Invoke(new Action(() => labelStatusInfo.Content = $"{ListOfActivities[CurrentActivity].Name}\nWkręć śruby!"));
                     Dispatcher.Invoke(new Action(() => labelStatusInfo.Background = System.Windows.Media.Brushes.Yellow));
                     Dispatcher.Invoke(new Action(() => textBox.IsEnabled = false));
                 }
@@ -365,11 +447,11 @@ namespace EvBoxScrewdrivers
         public void ScrewingComplete()
         {
 
-            _currentActivity++;
+            CurrentActivity++;
 
-            if(ListOfActivities.Count > _currentActivity) 
+            if(ListOfActivities.Count > CurrentActivity) 
             {
-                NumberOfScrews = ListOfActivities[_currentActivity].CountOfScrews;
+                NumberOfScrews = ListOfActivities[CurrentActivity].CountOfScrews;
 
                 ScrewsList.Clear();
                 for (int i = 0; i < NumberOfScrews; i++)
@@ -377,17 +459,19 @@ namespace EvBoxScrewdrivers
                     ScrewsList.Add(new Tightening());
                 }
 
-                Dispatcher.Invoke(new Action(() => labelStatusInfo.Content = $"{ListOfActivities[_currentActivity].Name}\nWkręć śruby!"));             
+                Dispatcher.Invoke(new Action(() => labelStatusInfo.Content = $"{ListOfActivities[CurrentActivity].Name}\nWkręć śruby!"));             
                 //  Dispatcher.Invoke(new Action(() => labelStatusInfo.Background = System.Windows.Media.Brushes.LawnGreen));
                 
                 StartSetLabels();
             }
             else
             {
+                if (CheckTackTime)
+                    Save.SaveQC2(Barcode);
                 if (modbusClient.Connected)
                     modbusClient.WriteSingleRegister(4001, 1);
-                _currentActivity = 0;
-                NumberOfScrews = ListOfActivities[_currentActivity].CountOfScrews;
+                CurrentActivity = 0;
+                NumberOfScrews = ListOfActivities[CurrentActivity].CountOfScrews;
                 StartSetLabels();
                 Dispatcher.Invoke(new Action(() => labelStatusInfo.Content = "Wkręcanie zakończone pomyślnie\nZeskanuj kolejny produkt!"));
                 Dispatcher.Invoke(new Action(() => labelStatusInfo.Background = System.Windows.Media.Brushes.LawnGreen));
@@ -419,7 +503,35 @@ namespace EvBoxScrewdrivers
         private void button_Click(object sender, RoutedEventArgs e)
         {
             if(modbusClient.Connected)
-                modbusClient.WriteSingleRegister(4001, 1);
+            {
+                modbusClient.WriteSingleRegister(4001, 0);
+
+                //modbusClient.WriteSingleRegister(4005, 1);
+                //Thread.Sleep(1000);
+                //modbusClient.WriteSingleRegister(4005, 0);
+                modbusClient.WriteSingleRegister(4007, 1);
+                if (!Model2Selection)
+                {
+                    modbusClient.WriteSingleRegister(4006, 63);
+                    modbusClient.WriteSingleRegister(4008, 2);
+                    Thread.Sleep(500);
+                    modbusClient.WriteSingleRegister(4008, 1);
+                }
+                else
+                {
+                    modbusClient.WriteSingleRegister(4006, 62 + 64);
+                    modbusClient.WriteSingleRegister(4008, 1);
+                    Thread.Sleep(500);
+                    modbusClient.WriteSingleRegister(4008, 2);
+                }
+
+                modbusClient.WriteSingleRegister(4007, 0);
+
+            }
+            else
+                MessageBox.Show("Brak połączenia ze sterownikiem, ZAMKNIJ APLIKACJĘ I OTWÓRZ JĄ PONOWNIE! ", "Błąd ModbusTcp", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
+
+
             ScrewsList.Clear();
             for (int i = 0; i < NumberOfScrews; i++)
             {
@@ -431,9 +543,24 @@ namespace EvBoxScrewdrivers
             Dispatcher.Invoke(new Action(() => labelStatusInfo.Background = System.Windows.Media.Brushes.LightSteelBlue));
             Dispatcher.Invoke(new Action(() => textBoxBarcode.Text = String.Empty));
             Dispatcher.Invoke(new Action(() => textBoxBarcode.IsEnabled = true));
-            _currentActivity = 0;
-            NumberOfScrews = ListOfActivities[_currentActivity].CountOfScrews;
+            CurrentActivity = 0;
+            NumberOfScrews = ListOfActivities[CurrentActivity].CountOfScrews;
             StartSetLabels();
+
+            try
+            {
+                if (modbusClient.Connected)
+                    modbusClient.Disconnect();
+                Thread.Sleep(250);
+                modbusClient = new ModbusClient("192.168.1.100", 5000);
+                modbusClient.ReceiveDataChanged += new EasyModbus.ModbusClient.ReceiveDataChangedHandler(UpdateReceiveData);
+                modbusClient.Connect();
+                modbusClient.WriteSingleRegister(4001, 1);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Błąd podczas nawiązywania połączenia ModbusTCP: " + ex, "Błąd ModbusTcp", MessageBoxButton.OK, MessageBoxImage.Exclamation, MessageBoxResult.OK, MessageBoxOptions.DefaultDesktopOnly);
+            }
 
         }
 

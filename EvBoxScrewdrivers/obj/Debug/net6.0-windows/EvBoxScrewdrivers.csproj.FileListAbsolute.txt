@@ -44,3 +44,5 @@ C:\Users\2281209\source\repostest\EvBoxScrewdrivers\EvBoxScrewdrivers\bin\Debug\
 C:\Users\2281209\source\repostest\EvBoxScrewdrivers\EvBoxScrewdrivers\bin\Debug\net6.0-windows\System.ServiceModel.Security.dll
 C:\Users\2281209\source\repostest\EvBoxScrewdrivers\EvBoxScrewdrivers\obj\Debug\net6.0-windows\ViewElementOfList.g.cs
 C:\Users\2281209\source\repostest\EvBoxScrewdrivers\EvBoxScrewdrivers\obj\Debug\net6.0-windows\ViewElementOfList.baml
+C:\Users\2281209\source\repostest\EvBoxScrewdrivers\EvBoxScrewdrivers\bin\Debug\net6.0-windows\evbox-logo-blue.png
+C:\Users\2281209\source\repostest\EvBoxScrewdrivers\EvBoxScrewdrivers\obj\Debug\net6.0-windows\EvBoxScrewdrivers_Content.g.cs

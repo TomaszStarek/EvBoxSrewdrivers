@@ -8,6 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="a2fiflavrt4f9amsalsy.bmp" />
+    <None Remove="a2fiflavrt4f9amsalsy.jpg" />
+    <None Remove="asd.png" />
+    <None Remove="evbox-logo-blue.png" />
+    <None Remove="evboxLOGO.PNG" />
+    <None Remove="jabilLogo.png" />
+    <None Remove="ładowarka1.png" />
+    <None Remove="ładowarka2_bez kabla.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="EasyModbusTCP" Version="5.6.0" />
     <PackageReference Include="System.IO.Ports" Version="6.0.0" />
     <PackageReference Include="System.ServiceModel.Duplex" Version="4.8.*" />
@@ -15,6 +26,30 @@
     <PackageReference Include="System.ServiceModel.Http" Version="4.8.*" />
     <PackageReference Include="System.ServiceModel.NetTcp" Version="4.8.*" />
     <PackageReference Include="System.ServiceModel.Security" Version="4.8.*" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="evbox-logo-blue.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="asd.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="evboxLOGO.PNG">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="jabilLogo.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ładowarka1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="ładowarka2_bez kabla.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

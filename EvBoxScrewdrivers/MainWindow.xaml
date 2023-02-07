@@ -13,30 +13,33 @@
             <ColumnDefinition Width="238*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="5*"/>
-            <RowDefinition Height="36*"/>
-            <RowDefinition Height="32*"/>
-            <RowDefinition Height="32*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
-            <RowDefinition Height="30*"/>
+            <RowDefinition Height="7*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="43*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40.034"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="40*"/>
 
-            <RowDefinition Height="100*"/>
+            <RowDefinition Height="133*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="button" Content="RESET" Margin="36,23,37,0" Click="button_Click" Grid.Row="18" Height="43" Grid.Column="2" d:LayoutOverrides="HorizontalAlignment, Height" VerticalAlignment="Top"/>
-        <Label x:Name="labelPodajBarcode" Grid.Row="1"  Content="Podaj barkod:" Margin="0,0,2,0" FontSize="20"/>
-        <TextBox x:Name="textBoxBarcode" Grid.Row="2" TextWrapping="Wrap" FontSize="14" Margin="5,1,5,1" KeyDown="OnKeyDownHandlerBarcode" />
+
+
+        <Image x:Name="___a2fiflavrt4f9amsalsy_png"  Source="/evboxLOGO.PNG" Stretch="Fill" Opacity="0.22" Margin="235,20,-353,-298" Grid.RowSpan="11" Grid.Row="8" Grid.ColumnSpan="2" Grid.Column="1"/>
+        <Button x:Name="button" Content="RESET" Margin="36,47,36,0" Click="button_Click" Grid.Row="18" Height="43" Grid.Column="2" VerticalAlignment="Top"/>
+        <Label x:Name="labelPodajBarcode" Grid.Row="1"  Content="Podaj barkod:" Margin="25,0,2,42" FontSize="20" Grid.RowSpan="2"/>
+        <TextBox x:Name="textBoxBarcode" Grid.Row="2" TextWrapping="Wrap" FontSize="22" Margin="25,1,5,1" KeyDown="OnKeyDownHandlerBarcode" />
 
 
         <Label x:Name="labelScrew1" Grid.Column="1" Content="Śruba 1 OK"  Grid.Row="4" Background="#FF37E214"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
@@ -50,14 +53,18 @@
         <Label x:Name="labelScrew9" Grid.Column="1" Content="Śruba 9 OK"  Grid.Row="12" Background="#FF37E214"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
         <Label x:Name="labelScrew10" Grid.Column="1" Content="Śruba 10 czeka na wkręcenie"  Grid.Row="13" Background="#FFE4F1E1"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
         <Label x:Name="labelScrew11" Grid.Column="1" Content="Śruba 11 czeka na wkręcenie"  Grid.Row="14" Background="#FFE4F1E1"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
-        <Label x:Name="labelScrew12" Grid.Column="1" Content="Śruba 12 czeka na wkręcenie"  Grid.Row="14" Background="#FFE4F1E1"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
-        <Label x:Name="labelScrew13" Grid.Column="1" Content="Śruba 13 czeka na wkręcenie"  Grid.Row="15" Background="#FFE4F1E1"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
-        <Label x:Name="labelScrew14" Grid.Column="1" Content="Śruba 14 czeka na wkręcenie"  Grid.Row="16" Background="#FFE4F1E1"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew12" Grid.Column="1" Content="Śruba 12 czeka na wkręcenie"  Grid.Row="15" Background="#FFE4F1E1"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew13" Grid.Column="1" Content="Śruba 13 czeka na wkręcenie"  Grid.Row="16" Background="#FFE4F1E1"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
+        <Label x:Name="labelScrew14" Grid.Column="1" Content="Śruba 14 czeka na wkręcenie"  Grid.Row="17" Background="#FFE4F1E1"  HorizontalContentAlignment="Center" FontSize="20" Margin="0,2,0,-2" d:LayoutOverrides="Height" FontStretch="Normal" FontWeight="Normal" FontStyle="Normal" Visibility="Hidden" MouseLeftButtonUp="labelScrew_MouseLeftButtonUp"/>
         <Label x:Name="labelStatusInfo" Content="Zeskanuj produkt!!" HorizontalContentAlignment="Center" Grid.Column="2" Margin="-224,3,24,0" Grid.Row="1" FontSize="20" Background="#FF0CA0ED" Grid.RowSpan="2"/>
         <TextBox x:Name="textBoxTCP" Margin="25,44,25,39" Grid.Row="18" TextWrapping="Wrap" Text="" d:LayoutOverrides="VerticalAlignment"/>
         <TextBox x:Name="textBoxRS" Margin="25,44,60,39" Grid.Row="18" Grid.Column="1" TextWrapping="Wrap" Text="" d:LayoutOverrides="VerticalAlignment"/>
         <Label x:Name="labelTextTcpResponse" Content="TCP (192.168.1.100) odpowiedź:" Margin="25,18,0,0" Grid.Row="18" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
         <Label x:Name="labelTextRsResponse" Content="RS232 odpowiedź:" Margin="25,18,0,0" Grid.Column="1"  Grid.Row="18" VerticalAlignment="Top" HorizontalAlignment="Left" FontWeight="Bold"/>
+        <Image x:Name="asd_png" Margin="67,40,0,0" Source="/asd.png" Stretch="Fill" Grid.Row="2" HorizontalAlignment="Left" VerticalAlignment="Top" Height="72" Width="241" Grid.RowSpan="3"/>
+        <Image x:Name="ChargerImage" Margin="74,26,75,2" Grid.RowSpan="12" Grid.Row="4" Source="" Stretch="Fill"/>
+        <Image x:Name="___jabilLogo_png" Margin="0,4,0,0" Grid.RowSpan="3" Grid.Row="16" Source="/jabilLogo.png" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Top" Width="340" Height="78"/>
+
 
     </Grid>
 </Window>

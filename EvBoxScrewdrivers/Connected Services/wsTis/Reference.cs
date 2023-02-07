@@ -16,35 +16,79 @@ namespace wsTis
     public interface MES_TISSoap
     {
         
+        // CODEGEN: Generating message contract since element name CustomerName from namespace http://jabil.com/GMS/MES_TIS is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/OKToTest", ReplyAction="*")]
+        wsTis.OKToTestResponse OKToTest(wsTis.OKToTestRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/OKToTest", ReplyAction="*")]
         System.Threading.Tasks.Task<wsTis.OKToTestResponse> OKToTestAsync(wsTis.OKToTestRequest request);
+        
+        // CODEGEN: Generating message contract since element name CustomerName from namespace http://jabil.com/GMS/MES_TIS is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/OKToTestLinkMaterial", ReplyAction="*")]
+        wsTis.OKToTestLinkMaterialResponse OKToTestLinkMaterial(wsTis.OKToTestLinkMaterialRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/OKToTestLinkMaterial", ReplyAction="*")]
         System.Threading.Tasks.Task<wsTis.OKToTestLinkMaterialResponse> OKToTestLinkMaterialAsync(wsTis.OKToTestLinkMaterialRequest request);
         
+        // CODEGEN: Generating message contract since element name CustomerName from namespace http://jabil.com/GMS/MES_TIS is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/GetPanelSerializeResult", ReplyAction="*")]
+        wsTis.GetPanelSerializeResultResponse GetPanelSerializeResult(wsTis.GetPanelSerializeResultRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/GetPanelSerializeResult", ReplyAction="*")]
         System.Threading.Tasks.Task<wsTis.GetPanelSerializeResultResponse> GetPanelSerializeResultAsync(wsTis.GetPanelSerializeResultRequest request);
+        
+        // CODEGEN: Generating message contract since element name SerialNumber from namespace http://jabil.com/GMS/MES_TIS is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/LookupCustAssy", ReplyAction="*")]
+        wsTis.LookupCustAssyResponse LookupCustAssy(wsTis.LookupCustAssyRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/LookupCustAssy", ReplyAction="*")]
         System.Threading.Tasks.Task<wsTis.LookupCustAssyResponse> LookupCustAssyAsync(wsTis.LookupCustAssyRequest request);
         
+        // CODEGEN: Generating message contract since element name SerialNumber from namespace http://jabil.com/GMS/MES_TIS is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/GetCurrentRouteStep", ReplyAction="*")]
+        wsTis.GetCurrentRouteStepResponse GetCurrentRouteStep(wsTis.GetCurrentRouteStepRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/GetCurrentRouteStep", ReplyAction="*")]
         System.Threading.Tasks.Task<wsTis.GetCurrentRouteStepResponse> GetCurrentRouteStepAsync(wsTis.GetCurrentRouteStepRequest request);
+        
+        // CODEGEN: Generating message contract since element name GetTestDataFormatsResult from namespace http://jabil.com/GMS/MES_TIS is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/GetTestDataFormats", ReplyAction="*")]
+        wsTis.GetTestDataFormatsResponse GetTestDataFormats(wsTis.GetTestDataFormatsRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/GetTestDataFormats", ReplyAction="*")]
         System.Threading.Tasks.Task<wsTis.GetTestDataFormatsResponse> GetTestDataFormatsAsync(wsTis.GetTestDataFormatsRequest request);
         
+        // CODEGEN: Generating message contract since element name TestData from namespace http://jabil.com/GMS/MES_TIS is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/ProcessTestData", ReplyAction="*")]
+        wsTis.ProcessTestDataResponse ProcessTestData(wsTis.ProcessTestDataRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/ProcessTestData", ReplyAction="*")]
         System.Threading.Tasks.Task<wsTis.ProcessTestDataResponse> ProcessTestDataAsync(wsTis.ProcessTestDataRequest request);
+        
+        // CODEGEN: Generating message contract since element name SerialNumber from namespace http://jabil.com/GMS/MES_TIS is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/GetTestHistory", ReplyAction="*")]
+        wsTis.GetTestHistoryResponse GetTestHistory(wsTis.GetTestHistoryRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/GetTestHistory", ReplyAction="*")]
         System.Threading.Tasks.Task<wsTis.GetTestHistoryResponse> GetTestHistoryAsync(wsTis.GetTestHistoryRequest request);
         
+        // CODEGEN: Generating message contract since element name SerialNumber from namespace http://jabil.com/GMS/MES_TIS is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/GetLastTestResult", ReplyAction="*")]
+        wsTis.GetLastTestResultResponse GetLastTestResult(wsTis.GetLastTestResultRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/GetLastTestResult", ReplyAction="*")]
         System.Threading.Tasks.Task<wsTis.GetLastTestResultResponse> GetLastTestResultAsync(wsTis.GetLastTestResultRequest request);
         
+        // CODEGEN: Generating message contract since element name GetVersionResult from namespace http://jabil.com/GMS/MES_TIS is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/GetVersion", ReplyAction="*")]
+        wsTis.GetVersionResponse GetVersion(wsTis.GetVersionRequest request);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/GetVersion", ReplyAction="*")]
         System.Threading.Tasks.Task<wsTis.GetVersionResponse> GetVersionAsync(wsTis.GetVersionRequest request);
+        
+        // CODEGEN: Generating message contract since element name CustomerName from namespace http://jabil.com/GMS/MES_TIS is not marked nillable
+        [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/OkToTest_Breakout", ReplyAction="*")]
+        wsTis.OkToTest_BreakoutResponse OkToTest_Breakout(wsTis.OkToTest_BreakoutRequest request);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://jabil.com/GMS/MES_TIS/OkToTest_Breakout", ReplyAction="*")]
         System.Threading.Tasks.Task<wsTis.OkToTest_BreakoutResponse> OkToTest_BreakoutAsync(wsTis.OkToTest_BreakoutRequest request);
@@ -1062,6 +1106,26 @@ namespace wsTis
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        wsTis.OKToTestResponse wsTis.MES_TISSoap.OKToTest(wsTis.OKToTestRequest request)
+        {
+            return base.Channel.OKToTest(request);
+        }
+        
+        public string OKToTest(string CustomerName, string Division, string SerialNumber, string AssemblyNumber, string TesterName, string ProcessStep)
+        {
+            wsTis.OKToTestRequest inValue = new wsTis.OKToTestRequest();
+            inValue.Body = new wsTis.OKToTestRequestBody();
+            inValue.Body.CustomerName = CustomerName;
+            inValue.Body.Division = Division;
+            inValue.Body.SerialNumber = SerialNumber;
+            inValue.Body.AssemblyNumber = AssemblyNumber;
+            inValue.Body.TesterName = TesterName;
+            inValue.Body.ProcessStep = ProcessStep;
+            wsTis.OKToTestResponse retVal = ((wsTis.MES_TISSoap)(this)).OKToTest(inValue);
+            return retVal.Body.OKToTestResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<wsTis.OKToTestResponse> wsTis.MES_TISSoap.OKToTestAsync(wsTis.OKToTestRequest request)
         {
             return base.Channel.OKToTestAsync(request);
@@ -1078,6 +1142,26 @@ namespace wsTis
             inValue.Body.TesterName = TesterName;
             inValue.Body.ProcessStep = ProcessStep;
             return ((wsTis.MES_TISSoap)(this)).OKToTestAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        wsTis.OKToTestLinkMaterialResponse wsTis.MES_TISSoap.OKToTestLinkMaterial(wsTis.OKToTestLinkMaterialRequest request)
+        {
+            return base.Channel.OKToTestLinkMaterial(request);
+        }
+        
+        public string OKToTestLinkMaterial(string CustomerName, string Division, string LinkMaterialSerialNumber, string AssemblyNumber, string TesterName, string ProcessStep)
+        {
+            wsTis.OKToTestLinkMaterialRequest inValue = new wsTis.OKToTestLinkMaterialRequest();
+            inValue.Body = new wsTis.OKToTestLinkMaterialRequestBody();
+            inValue.Body.CustomerName = CustomerName;
+            inValue.Body.Division = Division;
+            inValue.Body.LinkMaterialSerialNumber = LinkMaterialSerialNumber;
+            inValue.Body.AssemblyNumber = AssemblyNumber;
+            inValue.Body.TesterName = TesterName;
+            inValue.Body.ProcessStep = ProcessStep;
+            wsTis.OKToTestLinkMaterialResponse retVal = ((wsTis.MES_TISSoap)(this)).OKToTestLinkMaterial(inValue);
+            return retVal.Body.OKToTestLinkMaterialResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1100,6 +1184,23 @@ namespace wsTis
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        wsTis.GetPanelSerializeResultResponse wsTis.MES_TISSoap.GetPanelSerializeResult(wsTis.GetPanelSerializeResultRequest request)
+        {
+            return base.Channel.GetPanelSerializeResult(request);
+        }
+        
+        public string GetPanelSerializeResult(string CustomerName, string Division, string PanelSerialNumber)
+        {
+            wsTis.GetPanelSerializeResultRequest inValue = new wsTis.GetPanelSerializeResultRequest();
+            inValue.Body = new wsTis.GetPanelSerializeResultRequestBody();
+            inValue.Body.CustomerName = CustomerName;
+            inValue.Body.Division = Division;
+            inValue.Body.PanelSerialNumber = PanelSerialNumber;
+            wsTis.GetPanelSerializeResultResponse retVal = ((wsTis.MES_TISSoap)(this)).GetPanelSerializeResult(inValue);
+            return retVal.Body.GetPanelSerializeResultResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<wsTis.GetPanelSerializeResultResponse> wsTis.MES_TISSoap.GetPanelSerializeResultAsync(wsTis.GetPanelSerializeResultRequest request)
         {
             return base.Channel.GetPanelSerializeResultAsync(request);
@@ -1113,6 +1214,23 @@ namespace wsTis
             inValue.Body.Division = Division;
             inValue.Body.PanelSerialNumber = PanelSerialNumber;
             return ((wsTis.MES_TISSoap)(this)).GetPanelSerializeResultAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        wsTis.LookupCustAssyResponse wsTis.MES_TISSoap.LookupCustAssy(wsTis.LookupCustAssyRequest request)
+        {
+            return base.Channel.LookupCustAssy(request);
+        }
+        
+        public string LookupCustAssy(string SerialNumber, string CustomerName, string Division)
+        {
+            wsTis.LookupCustAssyRequest inValue = new wsTis.LookupCustAssyRequest();
+            inValue.Body = new wsTis.LookupCustAssyRequestBody();
+            inValue.Body.SerialNumber = SerialNumber;
+            inValue.Body.CustomerName = CustomerName;
+            inValue.Body.Division = Division;
+            wsTis.LookupCustAssyResponse retVal = ((wsTis.MES_TISSoap)(this)).LookupCustAssy(inValue);
+            return retVal.Body.LookupCustAssyResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1132,6 +1250,21 @@ namespace wsTis
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        wsTis.GetCurrentRouteStepResponse wsTis.MES_TISSoap.GetCurrentRouteStep(wsTis.GetCurrentRouteStepRequest request)
+        {
+            return base.Channel.GetCurrentRouteStep(request);
+        }
+        
+        public string GetCurrentRouteStep(string SerialNumber)
+        {
+            wsTis.GetCurrentRouteStepRequest inValue = new wsTis.GetCurrentRouteStepRequest();
+            inValue.Body = new wsTis.GetCurrentRouteStepRequestBody();
+            inValue.Body.SerialNumber = SerialNumber;
+            wsTis.GetCurrentRouteStepResponse retVal = ((wsTis.MES_TISSoap)(this)).GetCurrentRouteStep(inValue);
+            return retVal.Body.GetCurrentRouteStepResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<wsTis.GetCurrentRouteStepResponse> wsTis.MES_TISSoap.GetCurrentRouteStepAsync(wsTis.GetCurrentRouteStepRequest request)
         {
             return base.Channel.GetCurrentRouteStepAsync(request);
@@ -1146,6 +1279,20 @@ namespace wsTis
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        wsTis.GetTestDataFormatsResponse wsTis.MES_TISSoap.GetTestDataFormats(wsTis.GetTestDataFormatsRequest request)
+        {
+            return base.Channel.GetTestDataFormats(request);
+        }
+        
+        public string GetTestDataFormats()
+        {
+            wsTis.GetTestDataFormatsRequest inValue = new wsTis.GetTestDataFormatsRequest();
+            inValue.Body = new wsTis.GetTestDataFormatsRequestBody();
+            wsTis.GetTestDataFormatsResponse retVal = ((wsTis.MES_TISSoap)(this)).GetTestDataFormats(inValue);
+            return retVal.Body.GetTestDataFormatsResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<wsTis.GetTestDataFormatsResponse> wsTis.MES_TISSoap.GetTestDataFormatsAsync(wsTis.GetTestDataFormatsRequest request)
         {
             return base.Channel.GetTestDataFormatsAsync(request);
@@ -1156,6 +1303,22 @@ namespace wsTis
             wsTis.GetTestDataFormatsRequest inValue = new wsTis.GetTestDataFormatsRequest();
             inValue.Body = new wsTis.GetTestDataFormatsRequestBody();
             return ((wsTis.MES_TISSoap)(this)).GetTestDataFormatsAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        wsTis.ProcessTestDataResponse wsTis.MES_TISSoap.ProcessTestData(wsTis.ProcessTestDataRequest request)
+        {
+            return base.Channel.ProcessTestData(request);
+        }
+        
+        public string ProcessTestData(string TestData, string DataFormat)
+        {
+            wsTis.ProcessTestDataRequest inValue = new wsTis.ProcessTestDataRequest();
+            inValue.Body = new wsTis.ProcessTestDataRequestBody();
+            inValue.Body.TestData = TestData;
+            inValue.Body.DataFormat = DataFormat;
+            wsTis.ProcessTestDataResponse retVal = ((wsTis.MES_TISSoap)(this)).ProcessTestData(inValue);
+            return retVal.Body.ProcessTestDataResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1174,6 +1337,23 @@ namespace wsTis
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        wsTis.GetTestHistoryResponse wsTis.MES_TISSoap.GetTestHistory(wsTis.GetTestHistoryRequest request)
+        {
+            return base.Channel.GetTestHistory(request);
+        }
+        
+        public string GetTestHistory(string SerialNumber, string CustomerName, string Division)
+        {
+            wsTis.GetTestHistoryRequest inValue = new wsTis.GetTestHistoryRequest();
+            inValue.Body = new wsTis.GetTestHistoryRequestBody();
+            inValue.Body.SerialNumber = SerialNumber;
+            inValue.Body.CustomerName = CustomerName;
+            inValue.Body.Division = Division;
+            wsTis.GetTestHistoryResponse retVal = ((wsTis.MES_TISSoap)(this)).GetTestHistory(inValue);
+            return retVal.Body.GetTestHistoryResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<wsTis.GetTestHistoryResponse> wsTis.MES_TISSoap.GetTestHistoryAsync(wsTis.GetTestHistoryRequest request)
         {
             return base.Channel.GetTestHistoryAsync(request);
@@ -1187,6 +1367,24 @@ namespace wsTis
             inValue.Body.CustomerName = CustomerName;
             inValue.Body.Division = Division;
             return ((wsTis.MES_TISSoap)(this)).GetTestHistoryAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        wsTis.GetLastTestResultResponse wsTis.MES_TISSoap.GetLastTestResult(wsTis.GetLastTestResultRequest request)
+        {
+            return base.Channel.GetLastTestResult(request);
+        }
+        
+        public string GetLastTestResult(string SerialNumber, string CustomerName, string Division, string ProcessStep)
+        {
+            wsTis.GetLastTestResultRequest inValue = new wsTis.GetLastTestResultRequest();
+            inValue.Body = new wsTis.GetLastTestResultRequestBody();
+            inValue.Body.SerialNumber = SerialNumber;
+            inValue.Body.CustomerName = CustomerName;
+            inValue.Body.Division = Division;
+            inValue.Body.ProcessStep = ProcessStep;
+            wsTis.GetLastTestResultResponse retVal = ((wsTis.MES_TISSoap)(this)).GetLastTestResult(inValue);
+            return retVal.Body.GetLastTestResultResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
@@ -1207,6 +1405,20 @@ namespace wsTis
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        wsTis.GetVersionResponse wsTis.MES_TISSoap.GetVersion(wsTis.GetVersionRequest request)
+        {
+            return base.Channel.GetVersion(request);
+        }
+        
+        public string GetVersion()
+        {
+            wsTis.GetVersionRequest inValue = new wsTis.GetVersionRequest();
+            inValue.Body = new wsTis.GetVersionRequestBody();
+            wsTis.GetVersionResponse retVal = ((wsTis.MES_TISSoap)(this)).GetVersion(inValue);
+            return retVal.Body.GetVersionResult;
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
         System.Threading.Tasks.Task<wsTis.GetVersionResponse> wsTis.MES_TISSoap.GetVersionAsync(wsTis.GetVersionRequest request)
         {
             return base.Channel.GetVersionAsync(request);
@@ -1217,6 +1429,27 @@ namespace wsTis
             wsTis.GetVersionRequest inValue = new wsTis.GetVersionRequest();
             inValue.Body = new wsTis.GetVersionRequestBody();
             return ((wsTis.MES_TISSoap)(this)).GetVersionAsync(inValue);
+        }
+        
+        [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
+        wsTis.OkToTest_BreakoutResponse wsTis.MES_TISSoap.OkToTest_Breakout(wsTis.OkToTest_BreakoutRequest request)
+        {
+            return base.Channel.OkToTest_Breakout(request);
+        }
+        
+        public string OkToTest_Breakout(string CustomerName, string Division, string SerialNumber, string AssemblyNumber, string TesterName, string ProcessStep, string BreakOutFullPanel)
+        {
+            wsTis.OkToTest_BreakoutRequest inValue = new wsTis.OkToTest_BreakoutRequest();
+            inValue.Body = new wsTis.OkToTest_BreakoutRequestBody();
+            inValue.Body.CustomerName = CustomerName;
+            inValue.Body.Division = Division;
+            inValue.Body.SerialNumber = SerialNumber;
+            inValue.Body.AssemblyNumber = AssemblyNumber;
+            inValue.Body.TesterName = TesterName;
+            inValue.Body.ProcessStep = ProcessStep;
+            inValue.Body.BreakOutFullPanel = BreakOutFullPanel;
+            wsTis.OkToTest_BreakoutResponse retVal = ((wsTis.MES_TISSoap)(this)).OkToTest_Breakout(inValue);
+            return retVal.Body.OkToTest_BreakoutResult;
         }
         
         [System.ComponentModel.EditorBrowsableAttribute(System.ComponentModel.EditorBrowsableState.Advanced)]
